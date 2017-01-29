@@ -1,0 +1,10 @@
+﻿---
+BasedOnStyle: LLVM
+AlignAfterOpenBracket: Align
+BreakBeforeBraces: Linux
+Cpp11BracedListStyle: 'false'
+Language: Cpp
+Standard: Cpp11
+UseTab: Never
+
+...

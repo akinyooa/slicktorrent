@@ -1,0 +1,37 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "C_Cpp.clang_format_formatOnSave": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "main.dSYM": true,
+        "obj": true,
+        "bin": true
+    }
+,
+"files.associations": {
+    "algorithm": "cpp",
+    "__config": "cpp",
+    "cstddef": "cpp",
+    "initializer_list": "cpp",
+    "stdexcept": "cpp",
+    "exception": "cpp",
+    "new": "cpp",
+    "typeinfo": "cpp",
+    "iostream": "cpp",
+    "string": "cpp",
+    "iosfwd": "cpp",
+    "ostream": "cpp",
+    "atomic": "cpp",
+    "locale": "cpp",
+    "memory": "cpp",
+    "type_traits": "cpp",
+    "functional": "cpp",
+    "tuple": "cpp",
+    "deque": "cpp",
+    "map": "cpp",
+    "__tree": "cpp"
+}
+}
