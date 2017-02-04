@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <memory>
 #include "BencodeValue.h"
 
 int main(int argc, char *argv[])
@@ -16,8 +17,9 @@ int main(int argc, char *argv[])
     content = buffer.str();
     BencodeValue bencode;
 
-    const char* cont = content.c_str();
-    bencode.Decode(&cont);
+    //const char* cont = content.c_str();
+    //std::shared_ptr encodedContent = std:make_shared<std:string>(content);
+    bencode.Decode(content);
 
     return 0;
 }

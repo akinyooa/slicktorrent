@@ -7,7 +7,7 @@ class BencodeString : public BencodeValue
     std::string _textValue;
 
   public:   
-    void DecodeInternal(const char** encodedString);
+    void DecodeInternal(std::string& encodedString);
     std::string GetTextValue() { return _textValue; }
     void SetTextValue(std::string value) { _textValue = value; }
     BencodeString& operator +=(const std::string value) 

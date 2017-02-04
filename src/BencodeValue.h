@@ -16,9 +16,9 @@ class BencodeValue
     @param encodedString The encoded string to decode.
     @return the decoded bittorrent string.
     */
-    BencodeValue Decode(const char** encodedString);
+    BencodeValue Decode(std::string& encodedString);
 
-    virtual void DecodeInternal(const char** encodedString) { };
+    virtual void DecodeInternal(std::string& encodedString) { };
   
   private:
     /**

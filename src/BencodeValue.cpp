@@ -8,13 +8,13 @@ using std::string;
 using std::cout;
 using std::endl;
 
-BencodeValue BencodeValue::Decode(const char** encodedString)
+BencodeValue BencodeValue::Decode(std::string& encodedString)
 {
-    cout << *encodedString << endl;
+    cout << encodedString << endl;
 
     BencodeValue bencodeValue;
 
-    switch (**encodedString)
+    switch (encodedString[0])
     {
     case ('i'):
         {
