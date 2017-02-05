@@ -19,6 +19,10 @@ class BencodeValue
     BencodeValue Decode(std::string& encodedString);
 
     virtual void DecodeInternal(std::string& encodedString) { };
+
+  protected:
+    virtual int getLength(std::string& encodedString);
+    virtual void removeFirstCharacter(std::string& encodedString);
   
   private:
     /**
