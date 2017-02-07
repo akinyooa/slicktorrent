@@ -23,14 +23,14 @@ build:
 	cp -f puppy.torrent $(OUTPUT_DIR)
 
 # Tool invocations
-$(BINARY): $(MAIN) $(DEPENDENCIES)
+$(BINARY): $(MAIN)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MacOS X C++ Linker'
 	$(CXX) -g $(OBJS) -o $(BINARY)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-$(MAIN): main.cpp 
+$(MAIN): main.cpp $(DEPENDENCIES)
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
 $(BENCODER): BencodeValue.cpp BencodeValue.h

@@ -13,9 +13,10 @@
 class BencodeDictionary : public BencodeValue
 {
   private:
-    std::map<std::string, BencodeValue> _dictionary;
+    std::map<std::string, BencodeValueSp> _dictionary;
 
   public:   
+    BencodeValueType GetType() const { return BENCODEDICTIONARY; }
     void DecodeInternal(std::string& encodedString);
-    std::map<std::string, BencodeValue> GetDictionary() { return _dictionary; }
+    std::map<std::string, BencodeValueSp> GetDictionary() { return _dictionary; }
 };

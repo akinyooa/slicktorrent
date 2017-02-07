@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include "BencodeValue.h"
+#include "sys/socket.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,11 +16,9 @@ int main(int argc, char *argv[])
     file.close();
 
     content = buffer.str();
-    BencodeValue bencode;
+    BencodeValue::Decode(content);
 
-    //const char* cont = content.c_str();
-    //std::shared_ptr encodedContent = std:make_shared<std:string>(content);
-    bencode.Decode(content);
+    std::cout << "Finished parsing!" << std::endl;
 
     return 0;
 }

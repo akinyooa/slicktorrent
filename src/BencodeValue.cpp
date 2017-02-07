@@ -9,7 +9,7 @@ using std::string;
 using std::cout;
 using std::endl;
 
-BencodeValue BencodeValue::Decode(std::string &encodedString)
+std::shared_ptr<BencodeValue> BencodeValue::Decode(std::string &encodedString)
 {
     cout << encodedString << endl;
     BencodeValue bencodeValue;
@@ -19,15 +19,15 @@ BencodeValue BencodeValue::Decode(std::string &encodedString)
     case ('i'):
     {
         cout << "integer" << endl;
-        BencodeInteger bencodeInteger;
-        bencodeInteger.DecodeInternal(encodedString);
+        std::shared_ptr<BencodeValue> bencodeInteger = std::make_shared<BencodeInteger>();
+        bencodeInteger->DecodeInternal(encodedString);
         return bencodeInteger;
     }
     case ('d'):
     {
         cout << "dictionary" << endl;
-        BencodeDictionary bencodeDict;
-        bencodeDict.DecodeInternal(encodedString);
+        std::shared_ptr<BencodeValue> bencodeDict  = std::make_shared<BencodeDictionary>() ;
+        bencodeDict->DecodeInternal(encodedString);
         return bencodeDict;
     }
     case ('1'):
@@ -42,15 +42,15 @@ BencodeValue BencodeValue::Decode(std::string &encodedString)
     case ('0'):
     {
         cout << "found string value" << endl;
-        BencodeString bstring;
-        bstring.DecodeInternal(encodedString);
+        std::shared_ptr<BencodeValue> bstring = std::make_shared<BencodeString>();
+        bstring->DecodeInternal(encodedString);
         return bstring;
     }
     default:
         cout << "Unsupported value";
     }
 
-    return bencodeValue;
+    return nullptr;
 }
 
 int BencodeValue::getLength(string &encodedString)

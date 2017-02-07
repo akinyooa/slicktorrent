@@ -1,4 +1,12 @@
 #pragma once
+enum BencodeValueType
+{
+    BENCODEVALUE,
+    BENCODEINTEGER,
+    BENCODESTRING,
+    BENCODEDICTIONARY
+};
+
 /**
     CS-11 Asn 2
     BencodeValue.h
@@ -16,40 +24,32 @@ class BencodeValue
     @param encodedString The encoded string to decode.
     @return the decoded bittorrent string.
     */
-    BencodeValue Decode(std::string& encodedString);
+    static std::shared_ptr<BencodeValue> Decode(std::string &encodedString);
 
-    virtual void DecodeInternal(std::string& encodedString) { };
+    virtual BencodeValueType GetType() const { return BENCODEVALUE; }
+
+    virtual void DecodeInternal(std::string &encodedString){};
+
+    virtual std::string GetTypeString()
+    {
+        switch (GetType())
+        {
+        case BENCODEVALUE:
+            return "BencodeValue";
+        case BENCODEINTEGER:
+            return "BencodeInteger";
+        case BENCODESTRING:
+            return "BencodeString";
+        case BENCODEDICTIONARY:
+            return "BencodeDictionary";
+        default:
+            return "Not found";
+        }
+    }
 
   protected:
-    virtual int getLength(std::string& encodedString);
-    virtual void removeFirstCharacter(std::string& encodedString);
-  
-  private:
-    /**
-    Decode dictionary bittorent string.
-
-    @param encodedDictionary The encoded dictionary string to decode.
-    */
-    void decodeDictionary(char& encodedDictionary);
-
-    /**
-    Decode dictionary bittorent string.
-
-    @param encodedString The encoded string to decode.
-    */
-    void decodeString(char& encodedString);
-
-    /**
-    Decode dictionary bittorent string.
-
-    @param encodedList The encoded list string to decode.
-    */
-    void decodeList(char *encodedList);
-
-    /**
-    Decode dictionary bittorent string.
-
-    @param encodedNumber The encoded number string to decode.
-    */
-    void decodeNumber(char *encodedNumber);
+    virtual int getLength(std::string &encodedString);
+    virtual void removeFirstCharacter(std::string &encodedString);
 };
+
+typedef std::shared_ptr<BencodeValue> BencodeValueSp;

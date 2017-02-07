@@ -22,7 +22,6 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
     for (int i = 0; encodedString[0] != 'e'; i++)
     {
         string key;
-        BencodeValue value;
 
         if (length == 0)
         {
@@ -35,11 +34,11 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
             }
 
             length = 0;
-            value = value.Decode(encodedString);
+            BencodeValueSp value = BencodeValue::Decode(encodedString);
 
             if (key.size() > 0)
             {
-                std::pair<std::map<string, BencodeValue>::iterator, bool> res = GetDictionary().insert({key, value});
+                std::pair<std::map<string, BencodeValueSp>::iterator, bool> res = GetDictionary().insert({key, value});
                 if (!res.second)
                 {
                     cout << "key " << key << " already exists "
@@ -47,7 +46,7 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
                 }
                 else
                 {
-                    cout << "created key " << key << " with value " << endl;
+                    cout << "created key " << key << " with value " << value->GetTypeString() << endl;
                 }
             }
         }
