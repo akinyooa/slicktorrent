@@ -26,7 +26,7 @@ std::shared_ptr<BencodeValue> BencodeValue::Decode(std::string &encodedString)
     case ('d'):
     {
         cout << "dictionary" << endl;
-        std::shared_ptr<BencodeValue> bencodeDict  = std::make_shared<BencodeDictionary>() ;
+        std::shared_ptr<BencodeValue> bencodeDict  = std::make_shared<BencodeDictionary>();
         bencodeDict->DecodeInternal(encodedString);
         return bencodeDict;
     }
