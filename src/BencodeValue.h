@@ -4,7 +4,8 @@ enum BencodeValueType
     BENCODEVALUE,
     BENCODEINTEGER,
     BENCODESTRING,
-    BENCODEDICTIONARY
+    BENCODEDICTIONARY,
+    BENCODELIST
 };
 
 /**
@@ -42,6 +43,8 @@ class BencodeValue
             return "BencodeString";
         case BENCODEDICTIONARY:
             return "BencodeDictionary";
+        case BENCODELIST:
+            return "BencodeList";
         default:
             return "Not found";
         }

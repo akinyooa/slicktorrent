@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
     file.close();
 
     content = buffer.str();
+
+    std::cout << content << std::endl;
     BencodeValue::Decode(content);
 
     std::cout << "Finished parsing!" << std::endl;

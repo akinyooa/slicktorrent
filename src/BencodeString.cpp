@@ -11,7 +11,7 @@ void BencodeString::DecodeInternal(std::string& encodedString)
     int length = 0;
     length = getLength(encodedString);
 
-    for(int i = 0; i < length; i++)
+    for(int i = 0; i < length; ++i)
     {
         _textValue += encodedString[0];
         removeFirstCharacter(encodedString);

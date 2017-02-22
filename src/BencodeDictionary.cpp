@@ -10,7 +10,6 @@ using std::map;
 void BencodeDictionary::DecodeInternal(std::string &encodedString)
 {
     int length = 0;
-    // cout << encodedString <<endl;
 
     if (encodedString[0] != 'd')
     {
@@ -19,7 +18,7 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
 
     removeFirstCharacter(encodedString);
 
-    for (int i = 0; encodedString[0] != 'e'; i++)
+    for (int i = 0; encodedString[0] != 'e'; ++i)
     {
         string key;
 
@@ -27,7 +26,7 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
         {
             length = getLength(encodedString);
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < length; ++i)
             {
                 key += encodedString[0];
                 removeFirstCharacter(encodedString);
@@ -51,4 +50,5 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
             }
         }
     }
+    removeFirstCharacter(encodedString);
 }

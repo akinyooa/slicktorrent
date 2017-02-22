@@ -4,6 +4,7 @@
 #include "BencodeDictionary.h"
 #include "BencodeString.h"
 #include "BencodeInteger.h"
+#include "BencodeList.h"
 
 using std::string;
 using std::cout;
@@ -11,7 +12,6 @@ using std::endl;
 
 std::shared_ptr<BencodeValue> BencodeValue::Decode(std::string &encodedString)
 {
-    cout << encodedString << endl;
     BencodeValue bencodeValue;
 
     switch (encodedString[0])
@@ -29,6 +29,13 @@ std::shared_ptr<BencodeValue> BencodeValue::Decode(std::string &encodedString)
         std::shared_ptr<BencodeValue> bencodeDict  = std::make_shared<BencodeDictionary>();
         bencodeDict->DecodeInternal(encodedString);
         return bencodeDict;
+    }
+    case ('l'):
+    {
+        cout << "list" << endl;
+        std::shared_ptr<BencodeValue> bencodeList  = std::make_shared<BencodeList>();
+        bencodeList->DecodeInternal(encodedString);
+        return bencodeList;
     }
     case ('1'):
     case ('2'):
