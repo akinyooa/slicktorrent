@@ -33,11 +33,11 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
             }
 
             length = 0;
-            BencodeValueSp value = BencodeValue::Decode(encodedString);
+            auto value = BencodeValue::Decode(encodedString);
 
             if (key.size() > 0)
             {
-                std::pair<std::map<string, BencodeValueSp>::iterator, bool> res = GetDictionary().insert({key, value});
+                std::pair<std::map<string, std::shared_ptr<BencodeValue>>::iterator, bool> res = AddEntry(key, value);
                 if (!res.second)
                 {
                     cout << "key " << key << " already exists "
@@ -51,4 +51,9 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
         }
     }
     removeFirstCharacter(encodedString);
+}
+
+std::pair<std::map<string, std::shared_ptr<BencodeValue>>::iterator, bool> BencodeDictionary::AddEntry(const std::string& key, const std::shared_ptr<BencodeValue>& bencodeValue)
+{
+    return _dictionary.insert({key, bencodeValue});
 }

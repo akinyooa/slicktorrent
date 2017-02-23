@@ -20,7 +20,7 @@ all: build $(SLICKTORRENT)
 build:
 	mkdir -p $(OUTPUT_DIR)
 	mkdir -p $(OBJS_DIR)
-	cp -f puppy.torrent $(OUTPUT_DIR)
+	cp -f *.torrent $(OUTPUT_DIR)
 
 # Tool invocations
 $(SLICKTORRENT): $(MAIN)

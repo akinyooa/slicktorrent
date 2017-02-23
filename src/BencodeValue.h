@@ -54,5 +54,3 @@ class BencodeValue
     virtual int getLength(std::string &encodedString);
     virtual void removeFirstCharacter(std::string &encodedString);
 };
-
-typedef std::shared_ptr<BencodeValue> BencodeValueSp;

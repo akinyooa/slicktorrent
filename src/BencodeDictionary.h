@@ -13,10 +13,11 @@
 class BencodeDictionary : public BencodeValue
 {
   private:
-    std::map<std::string, BencodeValueSp> _dictionary;
+    std::map<std::string, std::shared_ptr<BencodeValue>> _dictionary;
 
   public:   
     BencodeValueType GetType() const { return BENCODEDICTIONARY; }
     void DecodeInternal(std::string& encodedString);
-    std::map<std::string, BencodeValueSp> GetDictionary() { return _dictionary; }
+    std::map<std::string, std::shared_ptr<BencodeValue>> GetDictionary() { return _dictionary; }
+    std::pair<std::map<std::string, std::shared_ptr<BencodeValue>>::iterator, bool> AddEntry(const std::string& key, const std::shared_ptr<BencodeValue>& bencodeValue);
 };

@@ -18,7 +18,13 @@ void BencodeList::DecodeInternal(std::string &encodedString)
 
     for (int i = 0; encodedString[0] != 'e'; ++i)
     {        
-        GetList().push_back(BencodeValue::Decode(encodedString));
+        AddBencodeValue(BencodeValue::Decode(encodedString));
     }
+    cout << "List size is " << GetList().size() << endl;
     removeFirstCharacter(encodedString);
+}
+
+void BencodeList::AddBencodeValue(const std::shared_ptr<BencodeValue>& bencodeValue)
+{
+    _list.push_back(bencodeValue);
 }
