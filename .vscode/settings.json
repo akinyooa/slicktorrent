@@ -1,6 +1,7 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "C_Cpp.clang_format_formatOnSave": false,
+    "C_Cpp.clang_format_formatOnSave": true,
+    "C_Cpp.clang_format_style": "file",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,

@@ -6,7 +6,7 @@ using std::string;
 using std::cout;
 using std::endl;
 
-void BencodeString::DecodeInternal(std::string& encodedString)
+void BencodeString::DecodeInternal(string &encodedString)
 {
     int length = 0;
     length = getLength(encodedString);

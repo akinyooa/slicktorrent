@@ -6,6 +6,7 @@ using std::string;
 using std::cout;
 using std::endl;
 using std::map;
+using std::shared_ptr;
 
 void BencodeDictionary::DecodeInternal(std::string &encodedString)
 {
@@ -20,8 +21,7 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
 
     for (int i = 0; encodedString[0] != 'e'; ++i)
     {
-        string key;
-
+        BencodeString key;
         if (length == 0)
         {
             length = getLength(encodedString);
@@ -37,15 +37,15 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
 
             if (key.size() > 0)
             {
-                std::pair<std::map<string, std::shared_ptr<BencodeValue>>::iterator, bool> res = AddEntry(key, value);
+                std::pair<std::map<BencodeString, shared_ptr<BencodeValue>>::iterator, bool> res = AddEntry(key, value);
                 if (!res.second)
                 {
                     cout << "key " << key << " already exists "
-                         << " with value " << endl;
+                         << " with value " << *value << endl;
                 }
                 else
                 {
-                    cout << "created key " << key << " with value " << value->GetTypeString() << endl;
+                    cout << "created key " << key << " with value " << *value << endl;
                 }
             }
         }
@@ -53,7 +53,7 @@ void BencodeDictionary::DecodeInternal(std::string &encodedString)
     removeFirstCharacter(encodedString);
 }
 
-std::pair<std::map<string, std::shared_ptr<BencodeValue>>::iterator, bool> BencodeDictionary::AddEntry(const std::string& key, const std::shared_ptr<BencodeValue>& bencodeValue)
+std::pair<std::map<BencodeString, shared_ptr<BencodeValue>>::iterator, bool> BencodeDictionary::AddEntry(const BencodeString &key, const shared_ptr<BencodeValue> &bencodeValue)
 {
     return _dictionary.insert({key, bencodeValue});
 }

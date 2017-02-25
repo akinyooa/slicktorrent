@@ -1,5 +1,6 @@
 #pragma once
 #include "BencodeValue.h"
+#include "BencodeString.h"
 #include <map>
 
 /**
@@ -12,12 +13,12 @@
 */
 class BencodeDictionary : public BencodeValue
 {
-  private:
-    std::map<std::string, std::shared_ptr<BencodeValue>> _dictionary;
+private:
+  std::map<BencodeString, std::shared_ptr<BencodeValue>> _dictionary;
 
-  public:   
-    BencodeValueType GetType() const { return BENCODEDICTIONARY; }
-    void DecodeInternal(std::string& encodedString);
-    std::map<std::string, std::shared_ptr<BencodeValue>> GetDictionary() { return _dictionary; }
-    std::pair<std::map<std::string, std::shared_ptr<BencodeValue>>::iterator, bool> AddEntry(const std::string& key, const std::shared_ptr<BencodeValue>& bencodeValue);
+public:
+  BencodeValueType GetType() const { return BENCODEDICTIONARY; }
+  void DecodeInternal(std::string &encodedString);
+  std::map<BencodeString, std::shared_ptr<BencodeValue>> GetDictionary() { return _dictionary; }
+  std::pair<std::map<BencodeString, std::shared_ptr<BencodeValue>>::iterator, bool> AddEntry(const BencodeString &key, const std::shared_ptr<BencodeValue> &bencodeValue);
 };

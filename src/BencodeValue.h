@@ -31,6 +31,14 @@ class BencodeValue
 
     virtual void DecodeInternal(std::string &encodedString){};
 
+    virtual void print(std::ostream &os) const {};
+
+    friend std::ostream &operator<<(std::ostream &os, BencodeValue &bencodeValue)
+    {
+        bencodeValue.print(os);
+        return os;
+    }
+
     virtual std::string GetTypeString()
     {
         switch (GetType())
