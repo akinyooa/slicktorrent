@@ -8,9 +8,10 @@ BENCODERDICT = $(OBJS_DIR)BencodeDictionary.o
 BENCODESTRING = $(OBJS_DIR)BencodeString.o
 BENCODEINTEGER = $(OBJS_DIR)BencodeInteger.o
 BENCODELIST = $(OBJS_DIR)BencodeList.o
+BENCODEPARSER = $(OBJS_DIR)BencodeParser.o
 CXX = clang++ -std=c++11 -stdlib=libc++
 CXX_FLAGS = -Wall -g -c
-OBJS = $(MAIN) $(BENCODER) $(BENCODERDICT) $(BENCODESTRING) $(BENCODEINTEGER) $(BENCODELIST)
+OBJS = $(MAIN) $(BENCODER) $(BENCODERDICT) $(BENCODESTRING) $(BENCODEINTEGER) $(BENCODELIST) $(BENCODEPARSER)
 VPATH = src
 
 
@@ -30,22 +31,25 @@ $(SLICKTORRENT): $(MAIN)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-$(MAIN): main.cpp $(BENCODER) $(BENCODERDICT) $(BENCODESTRING) $(BENCODEINTEGER) $(BENCODELIST)
+$(MAIN): main.cpp $(BENCODER) $(BENCODERDICT) $(BENCODESTRING) $(BENCODEINTEGER) $(BENCODELIST) $(BENCODEPARSER)
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
-$(BENCODER): BencodeValue.cpp BencodeValue.h
+$(BENCODER): Bencode/BencodeValue.h
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
-$(BENCODERDICT): BencodeDictionary.cpp BencodeDictionary.h $(BENCODER)
+$(BENCODERDICT): Bencode/BencodeDictionary.cpp Bencode/BencodeDictionary.h $(BENCODER)
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
-$(BENCODESTRING): BencodeString.cpp BencodeString.h $(BENCODER)
+$(BENCODESTRING): Bencode/BencodeString.cpp Bencode/BencodeString.h $(BENCODER)
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
-$(BENCODEINTEGER): BencodeInteger.cpp BencodeInteger.h $(BENCODER)
+$(BENCODEINTEGER): Bencode/BencodeInteger.cpp Bencode/BencodeInteger.h $(BENCODER)
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
-$(BENCODELIST): BencodeList.cpp BencodeList.h $(BENCODER)
+$(BENCODELIST): Bencode/BencodeList.cpp Bencode/BencodeList.h $(BENCODER)
+	$(CXX) $(CXX_FLAGS) $< -o $@
+
+$(BENCODEPARSER): Bencode/BencodeParser.cpp Bencode/BencodeParser.h $(BENCODER) $(BENCODERDICT) $(BENCODESTRING) $(BENCODEINTEGER) $(BENCODELIST)
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
 # Other Targets

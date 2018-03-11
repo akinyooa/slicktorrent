@@ -1,7 +1,8 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "C_Cpp.clang_format_formatOnSave": true,
-    "C_Cpp.clang_format_style": "file",
+    "editor.detectIndentation": false,
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: LLVM, ColumnLimit: 0, IndentWidth: 4} ",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -33,6 +34,35 @@
     "tuple": "cpp",
     "deque": "cpp",
     "map": "cpp",
-    "__tree": "cpp"
+    "__tree": "cpp",
+    "*.tcc": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cstdarg": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "fstream": "cpp",
+    "istream": "cpp",
+    "limits": "cpp",
+    "sstream": "cpp",
+    "streambuf": "cpp",
+    "__nullptr": "cpp",
+    "__bit_reference": "cpp",
+    "__functional_base": "cpp",
+    "bitset": "cpp",
+    "chrono": "cpp",
+    "iterator": "cpp",
+    "ratio": "cpp",
+    "system_error": "cpp",
+    "vector": "cpp",
+    "__split_buffer": "cpp",
+    "string_view": "cpp",
+    "utility": "cpp",
+    "__locale": "cpp",
+    "__string": "cpp"
 }
 }

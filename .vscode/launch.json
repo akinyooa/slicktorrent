@@ -15,7 +15,10 @@
                 "MIMode": "gdb"
             },
             "osx": {
-                "MIMode": "lldb"
+                "MIMode": "lldb",
+                "args": [
+                    "htgawm.torrent"
+                ]
             },
             "windows": {
                 "MIMode": "gdb"

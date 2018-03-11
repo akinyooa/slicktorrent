@@ -6,5 +6,6 @@ Cpp11BracedListStyle: 'false'
 Language: Cpp
 Standard: Cpp11
 UseTab: Never
-
+DerivePointerAlignment: false
+PointerAlignment: Left
 ...

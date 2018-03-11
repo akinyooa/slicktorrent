@@ -1,6 +1,9 @@
-#pragma once
-enum BencodeValueType
-{
+#ifndef BENCODE_BENCODEVALUE_H
+#define BENCODE_BENCODEVALUE_H
+
+#include <string>
+
+enum BencodeValueType {
     BENCODEVALUE,
     BENCODEINTEGER,
     BENCODESTRING,
@@ -11,38 +14,24 @@ enum BencodeValueType
 /**
     CS-11 Asn 2
     BencodeValue.h
-    Purpose: Decode bittorrent string.
+    Purpose: Store bitorrent bencoded data.
 
     @author Ade Akinyooye
-    @version 1.0 29/10/16 
+    @version 1.0 29/10/16
 */
-class BencodeValue
-{
+class BencodeValue {
   public:
-    /**
-    Returns the decoded bittorrent string.
-
-    @param encodedString The encoded string to decode.
-    @return the decoded bittorrent string.
-    */
-    static std::shared_ptr<BencodeValue> Decode(std::string &encodedString);
-
     virtual BencodeValueType GetType() const { return BENCODEVALUE; }
-
-    virtual void DecodeInternal(std::string &encodedString){};
 
     virtual void print(std::ostream &os) const {};
 
-    friend std::ostream &operator<<(std::ostream &os, BencodeValue &bencodeValue)
-    {
+    friend std::ostream &operator<<(std::ostream &os, BencodeValue &bencodeValue) {
         bencodeValue.print(os);
         return os;
     }
 
-    virtual std::string GetTypeString()
-    {
-        switch (GetType())
-        {
+    virtual std::string GetTypeString() {
+        switch (GetType()) {
         case BENCODEVALUE:
             return "BencodeValue";
         case BENCODEINTEGER:
@@ -57,8 +46,6 @@ class BencodeValue
             return "Not found";
         }
     }
-
-  protected:
-    virtual int getLength(std::string &encodedString);
-    virtual void removeFirstCharacter(std::string &encodedString);
 };
+
+#endif // !BENCODE_BENCODEVALUE_H
