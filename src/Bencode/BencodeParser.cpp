@@ -71,7 +71,7 @@ shared_ptr<BencodeDictionary> BencodeParser::decodeDictionary(string &encodedVal
             updateCurrentIndex(length);
 
             length = 0;
-            shared_ptr<BencodeValue> value = decode(encodedValue);
+            auto value = decode(encodedValue);
 
             if (key.size() > 0) {
                 std::pair<std::map<BencodeString, shared_ptr<BencodeValue> >::iterator, bool> res = bencodeDictionary->AddEntry(key, value);
