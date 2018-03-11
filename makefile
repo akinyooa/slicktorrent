@@ -11,6 +11,8 @@ BENCODELIST = $(OBJS_DIR)BencodeList.o
 BENCODEPARSER = $(OBJS_DIR)BencodeParser.o
 CXX = clang++ -std=c++11 -stdlib=libc++
 CXX_FLAGS = -Wall -g -c
+LD_LIBS =
+LD_FLAGS =
 OBJS = $(MAIN) $(BENCODER) $(BENCODERDICT) $(BENCODESTRING) $(BENCODEINTEGER) $(BENCODELIST) $(BENCODEPARSER)
 VPATH = src
 
@@ -34,7 +36,7 @@ $(SLICKTORRENT): $(MAIN)
 $(MAIN): main.cpp $(BENCODER) $(BENCODERDICT) $(BENCODESTRING) $(BENCODEINTEGER) $(BENCODELIST) $(BENCODEPARSER)
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
-$(BENCODER): Bencode/BencodeValue.h
+$(BENCODER): Bencode/BencodeValue.cpp Bencode/BencodeValue.h
 	$(CXX) $(CXX_FLAGS) $< -o $@
 
 $(BENCODERDICT): Bencode/BencodeDictionary.cpp Bencode/BencodeDictionary.h $(BENCODER)
