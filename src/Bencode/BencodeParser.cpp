@@ -22,12 +22,10 @@ shared_ptr<BencodeValue> BencodeParser::decode(string &encodedValue) {
     case ('d'): {
         cout << "dictionary" << endl;
         return decodeDictionary(encodedValue);
-        //return make_shared<BencodeValue>(bencodeDict);
     }
     case ('l'): {
         cout << "list" << endl;
         return decodeList(encodedValue);
-        //return make_shared<BencodeValue>(bencodeList);
     }
     case ('1'):
     case ('2'):
@@ -41,13 +39,11 @@ shared_ptr<BencodeValue> BencodeParser::decode(string &encodedValue) {
     case ('0'): {
         cout << "found string value" << endl;
         return decodeString(encodedValue);
-        //return bencodeString;
     }
     default:
         cout << "Unsupported value";
     }
 
-    //return nullptr;
     return bencodeValue;
 }
 

@@ -6,6 +6,7 @@
 #include <memory>
 #include <sstream>
 #include <string>
+#include <map>
 
 using std::shared_ptr;
 
@@ -28,8 +29,16 @@ int main(int argc, char *argv[]) {
     BencodeParser bencoderParser;
     shared_ptr<BencodeValue>  bencodeValue = bencoderParser.decode(content);
 
-    //std::string announce = bencodeValue->GetDictionary().find("announce")->right;
     std::cout << "Finished parsing!" << std::endl;
+    std::shared_ptr<BencodeDictionary> dictionary = std::dynamic_pointer_cast<BencodeDictionary>(bencodeValue);
+    std::map<BencodeString, std::shared_ptr<BencodeValue> > mymap = dictionary->GetDictionary();
+    std::shared_ptr<BencodeValue> firstValue = mymap.begin()->second;
+    std::map<BencodeString, std::shared_ptr<BencodeValue> >::const_iterator findValue = mymap.find("announce");
+
+    if (findValue == mymap.end())
+        std::cout << "Not found" << std::endl;
+    else
+        std::cout << *(findValue->second) << std::endl;
 
     return 0;
 }

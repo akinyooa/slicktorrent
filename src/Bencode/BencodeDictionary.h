@@ -21,6 +21,7 @@ class BencodeDictionary : public BencodeValue {
     BencodeValueType GetType() const { return BENCODEDICTIONARY; }
     std::map<BencodeString, std::shared_ptr<BencodeValue> > GetDictionary() { return _dictionary; }
     std::pair<std::map<BencodeString, std::shared_ptr<BencodeValue> >::iterator, bool> AddEntry(const BencodeString &key, const std::shared_ptr<BencodeValue> &bencodeValue);
+    void print(std::ostream &os) const;
 };
 
 #endif  // !BENCODE_BENCODEDICTIONARY_H
