@@ -9,7 +9,7 @@ BENCODESTRING = $(OBJS_DIR)BencodeString.o
 BENCODEINTEGER = $(OBJS_DIR)BencodeInteger.o
 BENCODELIST = $(OBJS_DIR)BencodeList.o
 BENCODEPARSER = $(OBJS_DIR)BencodeParser.o
-CXX = clang++ -std=c++11 -stdlib=libc++
+CXX = clang++ -std=c++11 -stdlib=libc++ -Wc++11-extensions
 CXX_FLAGS = -Wall -g -c
 LD_LIBS =
 LD_FLAGS =

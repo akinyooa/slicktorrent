@@ -25,14 +25,13 @@ int main(int argc, char *argv[]) {
 
     content = buffer.str();
 
-    std::cout << content << std::endl;
+    //std::cout << content << std::endl;
     BencodeParser bencoderParser;
     shared_ptr<BencodeValue>  bencodeValue = bencoderParser.decode(content);
 
     std::cout << "Finished parsing!" << std::endl;
     std::shared_ptr<BencodeDictionary> dictionary = std::dynamic_pointer_cast<BencodeDictionary>(bencodeValue);
     std::map<BencodeString, std::shared_ptr<BencodeValue> > mymap = dictionary->GetDictionary();
-    std::shared_ptr<BencodeValue> firstValue = mymap.begin()->second;
     std::map<BencodeString, std::shared_ptr<BencodeValue> >::const_iterator findValue = mymap.find("announce");
 
     if (findValue == mymap.end())
@@ -40,5 +39,6 @@ int main(int argc, char *argv[]) {
     else
         std::cout << *(findValue->second) << std::endl;
 
+    //std::cout << *bencodeValue << std::endl;
     return 0;
 }

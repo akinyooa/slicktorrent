@@ -13,5 +13,8 @@ void BencodeList::AddBencodeValue(const std::shared_ptr<BencodeValue> &bencodeVa
 }
 
 void BencodeList::print(std::ostream &os) const {
-    os << "list"<<endl;
+    for(std::shared_ptr<BencodeValue> bencodeValue : _list)
+    {
+        os << *bencodeValue << endl;
+    }
 }

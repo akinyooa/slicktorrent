@@ -16,15 +16,15 @@ shared_ptr<BencodeValue> BencodeParser::decode(string &encodedValue) {
 
     switch (encodedValue[_currentIndex]) {
     case ('i'): {
-        cout << "integer" << endl;
+        //cout << "integer" << endl;
         return decodeInteger(encodedValue);
     }
     case ('d'): {
-        cout << "dictionary" << endl;
+        //cout << "dictionary" << endl;
         return decodeDictionary(encodedValue);
     }
     case ('l'): {
-        cout << "list" << endl;
+        //cout << "list" << endl;
         return decodeList(encodedValue);
     }
     case ('1'):
@@ -37,7 +37,7 @@ shared_ptr<BencodeValue> BencodeParser::decode(string &encodedValue) {
     case ('8'):
     case ('9'):
     case ('0'): {
-        cout << "found string value" << endl;
+        //cout << "found string value" << endl;
         return decodeString(encodedValue);
     }
     default:
@@ -70,13 +70,13 @@ shared_ptr<BencodeDictionary> BencodeParser::decodeDictionary(string &encodedVal
             auto value = decode(encodedValue);
 
             if (key.size() > 0) {
-                std::pair<std::map<BencodeString, shared_ptr<BencodeValue> >::iterator, bool> res = bencodeDictionary->AddEntry(key, value);
-                if (!res.second) {
-                    cout << "key " << key << " already exists "
-                         << " with value " << *value << endl;
+                //std::pair<std::map<BencodeString, shared_ptr<BencodeValue> >::iterator, bool> res = 
+                bencodeDictionary->AddEntry(key, value);
+                /*if (!res.second) {
+                    cout << "key " << key << " already exists " << " with value " << *value << endl;
                 } else {
                     cout << "created key " << key << " with value " << *value << endl;
-                }
+                }*/
             }
         }
     }
@@ -119,9 +119,9 @@ shared_ptr<BencodeList> BencodeParser::decodeList(string &encodedValue) {
     for (int i = 0; encodedValue[_currentIndex] != 'e'; ++i) {
         shared_ptr<BencodeValue> value = decode(encodedValue);
         bencodeList->AddBencodeValue(value);
-        cout << "Added to list: " << *value << endl;
+        //cout << "Added to list: " << *value << endl;
     }
-    cout << "List size is " << bencodeList->GetList().size() << endl;
+    //cout << "List size is " << bencodeList->GetList().size() << endl;
     updateCurrentIndex(1);
 
     return bencodeList;
